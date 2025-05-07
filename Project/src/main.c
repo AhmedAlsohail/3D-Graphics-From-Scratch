@@ -117,6 +117,13 @@ void draw_grid(void){
     }
 }
 
+void draw_rectangle(int xPos, int yPos, int width, int height, uint32_t color){
+    for(int x = xPos; x < xPos+width; x++){ // Rows
+        for(int y = yPos; y < yPos+height; y++){ // Columns
+            color_buffer[(window_width*y + x)] = color;
+        }
+    }
+}
 
 void render_color_buffer(void){
     SDL_UpdateTexture(
@@ -138,6 +145,9 @@ void render(void){
     clear_color_buffer();
 
     draw_grid();
+
+    draw_rectangle(100, 100, 250, 150, 0xFF00FFFF);
+
 
     SDL_RenderPresent(renderer);
 }
