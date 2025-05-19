@@ -24,7 +24,6 @@ void setup(void){
     );
 }
 
-
 void process_input(void){
     SDL_Event event;
     SDL_PollEvent(&event);
@@ -40,7 +39,6 @@ void process_input(void){
     }
 }
 
-
 void update(void){
     
 }
@@ -51,12 +49,10 @@ void render(void){
 
     render_color_buffer();
 
-    clear_color_buffer();
-
-    draw_grid();
-
+    clear_color_buffer(0xFFFFFFFF);
+    draw_grid(0xFF000000);
     draw_rectangle(100, 100, 250, 150, 0xFF00FFFF);
-
+    draw_pixel(100, 100, 0xFFFF0000);
 
     SDL_RenderPresent(renderer);
 }

@@ -66,21 +66,31 @@ void render_color_buffer(void){
     SDL_RenderCopy(renderer, color_buffer_texture, NULL, NULL);
 }
 
-void clear_color_buffer(void){
+
+void draw_pixel(int x, int y, uint32_t color){
+    if(x < window_width && y < window_height){
+        color_buffer[(window_width*y + x)] = color;
+    }
+    else{
+        printf("Error: index out of color buffer.");
+    }
+        
+    
+}
+
+void clear_color_buffer(uint32_t color){
     for(int y = 0; y < window_height; y++){ // Rows
         for(int x = 0; x < window_width; x++){ // Columns
-            color_buffer[(window_width*y + x)] = 0xFF000000;
+            draw_pixel(x, y, color);
         }
     }
 }
 
-void draw_grid(void){
+void draw_grid(uint32_t color){
     for(int y = 0; y < window_height; y++){ // Rows
         for(int x = 0; x < window_width; x++){ // Columns
             if(x % 10 == 0 || y % 10 == 0)
-                color_buffer[(window_width*y + x)] = 0xFF000000;
-            else
-                color_buffer[(window_width*y + x)] = 0xFFFFFFFF;
+                draw_pixel(x, y, color);
         }
     }
 }
@@ -88,7 +98,7 @@ void draw_grid(void){
 void draw_rectangle(int xPos, int yPos, int width, int height, uint32_t color){
     for(int x = xPos; x < xPos+width; x++){ // Rows
         for(int y = yPos; y < yPos+height; y++){ // Columns
-            color_buffer[(window_width*y + x)] = color;
+            draw_pixel(x, y, color);
         }
     }
 }
