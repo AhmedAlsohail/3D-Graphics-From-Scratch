@@ -5,6 +5,9 @@
 #include <stdbool.h>
 #include <SDL2/SDL.h>
 
+#define FPS 240.0
+#define FRAME_TARGET_TIME_ms (1000.0 / FPS)
+
 extern SDL_Window* window;      // Make sure they start as no-pointer
 extern SDL_Renderer* renderer;  // Make sure they start as no-pointer
 

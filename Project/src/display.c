@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include "display.h"
 
 SDL_Window* window = NULL;      // Make sure they start as no-pointer
@@ -68,14 +69,12 @@ void render_color_buffer(void){
 
 
 void draw_pixel(int x, int y, uint32_t color){
-    if(x < window_width && y < window_height){
+    if((x >= 0 && x < window_width) && (y >= 0 && y < window_height)){
         color_buffer[(window_width*y + x)] = color;
     }
     else{
         printf("Error: index out of color buffer.");
-    }
-        
-    
+    }    
 }
 
 void clear_color_buffer(uint32_t color){
